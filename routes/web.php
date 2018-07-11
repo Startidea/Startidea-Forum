@@ -11,6 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'inicioController@inicio');
+Route::get('/inicio', 'Controller@inicio');
+Route::get('/alumnos', 'alumnosController@inicio');
+Route::get('asignaturas/', 'asignaturasController@inicio');
+Route::get('/calendarios', 'calendariosController@inicio');
+Route::get('/cursos', 'cursosController@inicio');
+Route::get('/editar', 'editarController@inicio');
+Route::get('/encuentas', 'encuentasController@inicio');
+Route::get('/evolucion', 'evolucionController@inicio');
+Route::get('/examenes', 'examenesController@inicio');
+Route::get('/foro', 'foroController@inicio');
+Route::get('/informes', 'informesController@inicio');
+Route::get('/login', 'loginController@inicio');
+Route::get('/mi-cuenta', 'mi-cuentaController@inicio');
+Route::get('/nota-legal', 'nota-legalController@inicio');
+Route::get('/nuevo', 'nuevoController@inicio');
+Route::get('/ordenar', 'ordenarController@inicio');
+Route::get('/otros-documentos', 'otros-documentosController@inicio');
+Route::get('/otros-profesores', 'otros-profesoresController@inicio');
+Route::get('/politica-de-privacidad', 'politica-de-privacidadController@inicio');
+Route::get('/registro', 'registroController@inicio');
+Route::get('/videoclases', 'videoclasesregistroController@inicio');
+
+
