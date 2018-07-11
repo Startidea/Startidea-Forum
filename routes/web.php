@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'inicioController@inicio');
-Route::get('/inicio', 'Controller@inicio');
+Route::get('/inicio', 'inicioController@inicio');
 Route::get('/alumnos', 'alumnosController@inicio');
 Route::get('asignaturas/', 'asignaturasController@inicio');
 Route::get('/calendarios', 'calendariosController@inicio');
