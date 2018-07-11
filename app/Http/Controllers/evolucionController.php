@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class evolucionController extends Controller
 {
-    //
+    public function inicio(){
+        return view ("evolucion");
+    }
 }
