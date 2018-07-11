@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class informesController extends Controller
 {
-    //
+    public function inicio(){
+        return view ("informes");
+    }
 }
