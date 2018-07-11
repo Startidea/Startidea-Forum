@@ -1,66 +1,170 @@
+{{----------------------------------------------------------------------------
+    RECOGER DATOS 
+    (En el futuro el datos vendrán desde el controlador, de donde haremos 
+    las llamadas a la base de datos)
+----------------------------------------------------------------------------}}
+
+@php
+    
+    $data = array(
+
+        'head-title' => 'STARTIDEA FORUM',
+        'head-css' => URL::asset('css/app.css'),
+        
+        'body-id' => Request::is('/') ? 'index' : Request::path(),
+
+        'header-logo-a' => '/',
+        'header-logo' => 'http://wayzone.es/view/img/logo-wayzone.png',
+
+        'courses' => array(
+            0 => 'Curso 1',
+            1 => 'Curso 2',
+        ),
+
+        'submenu' => array(
+            0 => array(
+                'route' => 'profesores',
+                'name' => 'Profesores',
+            ),
+            1 => array(
+                'route' => 'alumnos',
+                'name' => 'Alumnos',
+            ),
+        ),
+
+        'user-menu-img' => 'https://cdn.icon-icons.com/icons2/827/PNG/512/user_icon-icons.com_66546.png',
+        'user-menu-name' => 'Nombre usuario',
+        'user-menu-email' => 'Email usuario',
+
+        'user-menu' => array(
+            0 => array(
+                'route' => '/',
+                'name' => 'Inicio',
+            ),
+        ),
+
+        'user-menu-signout-route' => '/salir',
+        'user-menu-signout' => 'Salir',
+
+        'login-route' => '/salir',
+        'login' => 'Salir',
+        'register-route' => '/registro',
+        'register' => 'Registro',
+
+        'menu' => array(
+            0 => array(
+                'route' => 'login',
+                'name' => 'Login',
+                'session' => false,
+            ),
+            1 => array(
+                'route' => 'registro',
+                'name' => 'Registro',
+                'session' => false,
+            ),
+            2 => array(
+                'route' => 'inicio',
+                'name' => 'Inicio',
+                'session' => true,
+            ),
+        ),
+
+        'footer-copyright' => 'Copyright',
+
+        'footer-menu' => array(
+            0 => array(
+                'route' => 'temas-legales',
+                'name' => 'Temas legales',
+            ),
+            1 => array(
+                'route' => 'politica-de-privacidad',
+                'name' => 'Política de privacidad',
+            ),
+            2 => array(
+                'route' => 'contacto',
+                'name' => 'Contacto',
+            ),
+        ),
+
+    );
+
+@endphp
+
+{{-- IMPOTAR PLANTILLA --}}
+
 @extends('layouts.app')
 
-@section('title')
-    STARTIDEA FORUM
-@endsection
+    {{-- DATOS DEL HEAD --}}
 
-@section('img-logo')
-    http://wayzone.es/view/img/logo-wayzone.png
-@endsection
+    @section('head-title')
+        {{ $data['head-title'] }}
+    @endsection
 
-@section('submenu')
+    @section('head-css')
+        {{ $data['head-css'] }}
+    @endsection
 
-    <select id='select-course' onchange='changeCourse();'>
-        <option value='1'>BIR</option>
-        <option value='2'>FIR</option>
-    </select>
-    
-    <script> 
-        function changeCourse(){ 
-            var sel = document.getElementById('select-course').value; 
-            window.location = 'http:// {{ url()->current() }} &change-course='+sel; 
-        }
-    </script>
-    
-    <a href='/profesores-y-alumnos' class='button'>Profesores y alumnos</a>
+    {{-- DATOS DEL BODY --}}
 
-@endsection
+    @section('body-id')
+        {{ $data['body-id'] }}
+    @endsection
 
-@section('user-menu')
+        {{-- DATOS DEL HEADER --}}
 
-    <div id='user-menu'>
+        @section('header-logo-a')
+            {{ $data['header-logo-a'] }}
+        @endsection
 
-        <div>
+        @section('header-logo')
+            {{ $data['header-logo'] }}
+        @endsection
 
-            <div class='image' style='background-image:url( {{ rand() }} )'></div>
-            <div class='name'>
-                <span class='name'>{{ 'Nombre' }}</span>
-                <span class='email'>{{ 'Email' }}</span>
+            {{-- DATOS DEL MENU USER --}}
+
+            @section('user-menu-img')
+                {{ $data['user-menu-img'] }}
+            @endsection
+
+            @section('user-menu-name')
+                {{ $data['user-menu-name'] }}
+            @endsection
+
+            @section('user-menu-email')
+                {{ $data['user-menu-email'] }}
+            @endsection
+
+        {{----------------------------------------------------------------------------
+            HTML DEL CONTENT
+            (HTML único de esta vista)
+        ----------------------------------------------------------------------------}}
+
+        @section('content')
+
+            <!-- CABECERA DEL CONTENIDO -->
+		
+            <div id='header-content'>
+
+
+
             </div>
 
-        </div>
+            <!-- BODY DEL CONTENIDO -->
 
-        <div class='clear'></div>
+            <div id='body-content'>
 
-        <ul class='menu'>
 
-            <li>
-                <a href='/'>Inicio</a>
-            </li>
 
-            <li>
-                <a href='/singout'>Salir</a>
-            </li>
+            </div>
 
-        </ul>
+        @endsection
 
-    </div>
+        {{-- DATOS DEL FOOTER --}}
 
-@endsection
+        @section('footer-copyright')
+            {{ $data['footer-copyright'] }}
+        @endsection
 
-@section('login-register')
-
-    <a href='/login'>Login</a>
-    <a href='/registro'>Registro</a>
-
-@endsection
+        @section('header-logo')
+            {{ $data['header-logo'] }}
+        @endsection

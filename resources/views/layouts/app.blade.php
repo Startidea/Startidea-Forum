@@ -1,5 +1,104 @@
+{{----------------------------------------------------------------------------
+    RECOGER DATOS 
+    (En el futuro el datos vendrán desde el controlador, de donde haremos 
+    las llamadas a la base de datos)
+----------------------------------------------------------------------------}}
+
+@php
+
+    $data_app = array(
+
+        'language' => app()->getLocale(),
+
+        'head-title' => 'STARTIDEA FORUM',
+        'head-css-reset' => URL::asset('css/reset.css'),
+        'head-css' => URL::asset('css/app.css'),
+        
+        'body-id' => Request::is('/') ? 'index' : Request::path(),
+
+        'header-logo-a' => '/',
+        'header-logo' => 'http://wayzone.es/view/img/logo-wayzone.png',
+
+        'courses' => array(
+            0 => 'Curso 1',
+            1 => 'Curso 2',
+        ),
+
+        'submenu' => array(
+            0 => array(
+                'route' => 'profesores',
+                'name' => 'Profesores',
+            ),
+            1 => array(
+                'route' => 'alumnos',
+                'name' => 'Alumnos',
+            ),
+        ),
+
+        'user-menu-img' => 'https://cdn.icon-icons.com/icons2/827/PNG/512/user_icon-icons.com_66546.png',
+        'user-menu-name' => 'Nombre usuario',
+        'user-menu-email' => 'Email usuario',
+
+        'user-menu' => array(
+            0 => array(
+                'route' => '/',
+                'name' => 'Inicio',
+            ),
+        ),
+
+        'user-menu-signout-route' => '/salir',
+        'user-menu-signout' => 'Salir',
+
+        'login-route' => '/salir',
+        'login' => 'Salir',
+        'register-route' => '/registro',
+        'register' => 'Registro',
+
+        'menu' => array(
+            0 => array(
+                'route' => 'login',
+                'name' => 'Login',
+                'session' => false,
+            ),
+            1 => array(
+                'route' => 'registro',
+                'name' => 'Registro',
+                'session' => false,
+            ),
+            2 => array(
+                'route' => 'inicio',
+                'name' => 'Inicio',
+                'session' => true,
+            ),
+        ),
+
+        'footer-copyright' => 'Copyright',
+
+        'footer-menu' => array(
+            0 => array(
+                'route' => 'temas-legales',
+                'name' => 'Temas legales',
+            ),
+            1 => array(
+                'route' => 'politica-de-privacidad',
+                'name' => 'Política de privacidad',
+            ),
+            2 => array(
+                'route' => 'contacto',
+                'name' => 'Contacto',
+            ),
+        ),
+
+    );
+
+@endphp
+
+{{----------------------------------------------------------------------------
+    HTML DE LA PLANTILLA
+----------------------------------------------------------------------------}}
+
 <!doctype html>
-<html lang='{{ app()->getLocale() }}'>
+<html lang='{{ $data_app['language'] }}'>
 
     <head>
 
@@ -7,13 +106,14 @@
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-        <title>@yield('title')</title>
+        <title>{{ $data_app['head-title'] }}</title>
 
-        <link href='{{ URL::asset('css/app.css') }}' type='text/css' rel='stylesheet' media=''>
+        <link href='{{ $data_app['head-css-reset'] }}' type='text/css' rel='stylesheet' media=''>
+        <link href='{{ $data_app['head-css'] }}' type='text/css' rel='stylesheet' media=''>
 
     </head>
 
-    <body id='{{ Request::is('/') ? 'index' : Request::path() }}'>
+    <body id='{{ $data_app['body-id'] }}'>
 
         <div id='center'>
 				
@@ -21,17 +121,42 @@
             
                 <div class='logo'>
 
-                    <a href='/'>
-                        <img src='@yield('img-logo')'/>
+                    <a href='{{ $data_app['header-logo-a'] }}'>
+                        <img src='{{ $data_app['header-logo'] }}'/>
                     </a>
 
                 </div>
             
                 <div class='submenu'>
 
-                    @if(Auth::check())
+                    @if (!Auth::check())
 
-                        @yield('submenu')
+                        @if (count($data_app['courses']) != 0)
+
+                            <select id='select-course' onchange='changeCourse();'>
+
+                                @foreach ($data_app['courses'] as $key => $value)
+
+                                    <option value='{{ $key }}'>{{ $value }}</option>
+
+                                @endforeach
+
+                            </select>
+
+                        @endif
+                        
+                        <script> 
+                            function changeCourse(){ 
+                                var sel = document.getElementById('select-course').value; 
+                                window.location = '{{ url()->current() }}?change-course='+sel; 
+                            }
+                        </script>
+
+                        @foreach ($data_app['submenu'] as $key => $value)
+
+                            <a href='/{{ $value['route'] }}' class='button'>{{ $value['name'] }}</a>
+
+                        @endforeach
                     
                     @endif
 
@@ -41,13 +166,44 @@
 
                     <div class='login-register'>
 
-                        @if(Auth::check())
+                        @if (!Auth::check())
 
-                            @yield('user-menu')
+                            <div id='user-menu'>
+
+                                <div>
+                        
+                                    <div class='image' style='background-image:url({{ $data_app['user-menu-img'] }})'></div>
+                                    <div class='name'>
+                                        <span class='name'>{{ $data_app['user-menu-name'] }}</span>
+                                        <span class='email'>{{ $data_app['user-menu-email'] }}</span>
+                                    </div>
+                        
+                                </div>
+                        
+                                <div class='clear'></div>
+                        
+                                <ul class='menu'>
+
+                                    @foreach ($data_app['user-menu'] as $key => $value)
+
+                                        <li>
+                                            <a href='/{{ $value['route'] }}'>{{ $value['name'] }}</a>
+                                        </li>
+            
+                                    @endforeach
+                        
+                                    <li>
+                                        <a href='/{{ $data_app['user-menu-signout-route'] }}'{{ $data_app['user-menu-signout'] }}</a>
+                                    </li>
+                        
+                                </ul>
+                        
+                            </div>
                         
                         @else
 
-                            @yield('login-register')
+                            <a href='/{{ $data_app['login-route'] }}'>{{ $data_app['login'] }}</a>
+                            <a href='/{{ $data_app['register-route'] }}'>{{ $data_app['register'] }}</a>
                         
                         @endif
 
@@ -65,149 +221,35 @@
 
                 <div id='sidebar-mobile'></div>
                 
-                <!--<div id='sidebar'>
+                <div id='sidebar'>
 						
                     <nav>
 
                         <ul>
-                            
-                                <a href='?page=login'>
-                                    <li class='menu-login ". $menu['login'] ."'>
-                                        Login
-                                    </li>
-                                </a>
 
-                                <a href='?page=registro'>
-                                    <li class='menu-registro ". $menu['registro'] ."'>
-                                        Registro
-                                    </li>
-                                </a>
+                            @foreach ($data_app['menu'] as $key => $value)
 
-                            } else {
-                            
-                                <a href='?page=index'>
-                                    <li class='menu-inicio ". $menu['index'] ."'>
-                                        Inicio
-                                    </li>
-                                </a>
-
-                                if($_SESSION['type'] != 'profesor'){
+                                @if (!Auth::check() AND !$value['session'])
                                 
-                                    <a href='?page=calendarios'>
-                                        <li class='menu-calendarios ". $menu['calendarios'] ."'>
-                                            calendarios
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=asignaturas'>
-                                        <li class='menu-asignaturas ". $menu['asignaturas'] ."'>
-                                            asignaturas
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=videoclases'>
-                                        <li class='menu-videoclases ". $menu['videoclases'] ."'>
-                                            videoclases
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=simulacros-finales'>
-                                        <li class='menu-simulacros ". $menu['simulacros'] ."'>
-                                            simulacros finales
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=examenes-oficiales'>
-                                        <li class='menu-examenes ". $menu['examenes'] ."'>
-                                            examenes oficiales
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=otros-documentos'>
-                                        <li class='menu-otros-documentos ". $menu['otros-documentos'] ."'>
-                                            otros documentos
+                                    <a href='/{{ $value['route'] }}'>
+                                        <li class='menu-login {{ Request::is($value['route']) ? 'select' : '' }}'>
+                                            {{ $value['name'] }}
                                         </li>
                                     </a>
 
-                                }
+                                @endif
 
-                                if($_SESSION['course'] == 1){
-                                    $iframe_course = 'bir'
-                                } else if($_SESSION['course'] == 2){
-                                    $iframe_course = 'fir'
-                                }
-                                                        
-                                <a href='?page=foro#/categories/". $iframe_course ."'>
-                                    <li class='menu-foro ". $menu['foro'] ."'>
-                                        foro
-                                    </li>
-                                </a>
-
-                                if($_SESSION['type'] == 'admin'){
+                                @if (Auth::check() AND $value['session'])
                                 
-                                    <a href='?page=encuestas'>
-                                        <li class='menu-encuestas ". $menu['encuestas'] ."'>
-                                            encuestas
+                                    <a href='/{{ $value['route'] }}'>
+                                        <li class='menu-login {{ Request::is($value['route']) ? 'select' : '' }}'>
+                                            {{ $value['name'] }}
                                         </li>
                                     </a>
 
-                                }
-
-                                if($_SESSION['type'] == 'alumno'){
-                                
-                                    <a href='?page=encuestas'>
-                                        <li class='menu-encuestas ". $menu['encuestas'] ."'>
-                                            encuestas
-                                        </li>
-                                    </a>
-
-                                    <a href='?page=corregir-simulacro'>
-                                        <li class='menu-corregir-simulacro ". $menu['corregir-simulacro'] ."'>
-                                            corregir simulacro
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=mis-informes'>
-                                        <li class='menu-mis-informes ". $menu['mis-informes'] ."'>
-                                            mis informes
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=mi-evolucion'>
-                                        <li class='menu-mi-evolucion ". $menu['mi-evolucion'] ."'>
-                                            mi evolucion
-                                        </li>
-                                    </a>
-
-                                }
-
-                                if($_SESSION['type'] == 'admin'){
-
-                                    <a href='?page=excel-respuestas'>
-                                        <li class='menu-excel-respuestas ". $menu['excel-respuestas'] ."'>
-                                            excel respuestas
-                                        </li>
-                                    </a>
-
-                                }
-
-                                if($_SESSION['type'] == 'admin' || $_SESSION['type'] == 'profesor'){
-                                    
-                                    <a href='?page=informes-alumnos'>
-                                        <li class='menu-mis-informes ". $menu['informes-alumnos'] ."'>
-                                            informes alumnos
-                                        </li>
-                                    </a>
-                                    
-                                    <a href='?page=evolucion-alumnos'>
-                                        <li class='menu-mi-evolucion ". $menu['evolucion-alumnos'] ."'>
-                                            evolucion alumnos
-                                        </li>
-                                    </a>
-
-                                }
-
-                            }
+                                @endif
+    
+                            @endforeach
 
                         </ul>
                     
@@ -215,22 +257,12 @@
 
                 </div>
 
-                <div id='dark-layer'></div>-->
+                <div id='dark-layer'></div>
+            
+                <div id='content'>
 
-                <div id='content' class='acuario'>
-		
-                    <div id='header-content'>
+                    @yield('content')
 
-
-
-                    </div>
-
-                    <div id='body-content'>
-
-
-
-                    </div>
-                    
                 </div>
     
             </div>
@@ -241,7 +273,7 @@
 					
                 <div class='copyright'>
 
-                    <p>Copyright</p>
+                    <p>{{ $data_app['footer-copyright'] }}</p>
 
                 </div>
             
@@ -249,21 +281,15 @@
 
                     <ul>
 
-                        <li>
-                            <a href='/temas-legales'>Temas legales</a>
-                        </li>
+                        @foreach ($data_app['footer-menu'] as $key => $value)
 
-                        <li>
-                            <a href='/politica-de-privacidad'>Política de privacidad</a>
-                        </li>
+                            <li>
+                                <a href='/{{ $value['route'] }}'>{{ $value['name'] }}</a>
+                            </li>
+
+                        @endforeach
 
                     </ul>
-
-                </div>
-            
-                <div class='links'>
-
-                    <a href='/contacto'>Contacto</a>
 
                 </div>
             

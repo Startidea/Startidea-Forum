@@ -1,66 +1,47 @@
+{{----------------------------------------------------------------------------
+    IMPOTAR PLANTILLA
+----------------------------------------------------------------------------}}
+
 @extends('layouts.app')
 
-@section('title')
-    STARTIDEA FORUM | Inicio
-@endsection
+{{----------------------------------------------------------------------------
+    RECOGER DATOS 
+    (En el futuro el datos vendrán desde el controlador, de donde haremos 
+    las llamadas a la base de datos)
+----------------------------------------------------------------------------}}
 
-@section('img-logo')
-    http://wayzone.es/view/img/logo-wayzone.png
-@endsection
-
-@section('submenu')
-
-    <select id='select-course' onchange='changeCourse();'>
-        <option value='1'>BIR</option>
-        <option value='2'>FIR</option>
-    </select>
+@php
     
-    <script> 
-        function changeCourse(){ 
-            var sel = document.getElementById('select-course').value; 
-            window.location = 'http:// {{ url()->current() }} &change-course='+sel; 
-        }
-    </script>
-    
-    <a href='/profesores-y-alumnos' class='button'>Profesores y alumnos</a>
+    $data_view = array(
 
-@endsection
+        'title' => 'Inicio',
 
-@section('user-menu')
+        'parrafo' => 'En construcción...',
 
-    <div id='user-menu'>
+    );
 
-        <div>
+@endphp
 
-            <div class='image' style='background-image:url( {{ rand() }} )'></div>
-            <div class='name'>
-                <span class='name'>{{ 'Nombre' }}</span>
-                <span class='email'>{{ 'Email' }}</span>
-            </div>
+{{----------------------------------------------------------------------------
+    HTML DEL CONTENT
+----------------------------------------------------------------------------}}
 
-        </div>
+@section('content')
 
-        <div class='clear'></div>
+    <!-- CABECERA DEL CONTENIDO -->
 
-        <ul class='menu'>
+    <div id='header-content'>
 
-            <li>
-                <a href='/'>Inicio</a>
-            </li>
-
-            <li>
-                <a href='/singout'>Salir</a>
-            </li>
-
-        </ul>
+        <h1>{{ $data_view['title'] }}</h1>
 
     </div>
 
-@endsection
+    <!-- BODY DEL CONTENIDO -->
 
-@section('login-register')
+    <div id='body-content'>
 
-    <a href='/login'>Login</a>
-    <a href='/registro'>Registro</a>
+            <p>{{ $data_view['parrafo'] }}</p>
+
+    </div>
 
 @endsection
