@@ -8,6 +8,6 @@ class examenesController extends Controller
 {
     public function inicio()
     {
-        return "EXAMENES";
+        return view ('examenes');
     }
 }

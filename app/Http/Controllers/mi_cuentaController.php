@@ -8,6 +8,6 @@ class mi_cuentaController extends Controller
 {
     public function inicio()
     {
-        return "MI CUENTA";
+        return view ('mi-cuenta');
     }
 }

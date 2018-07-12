@@ -8,6 +8,6 @@ class videoclasesController extends Controller
 {
     public function inicio()
     {
-        return "VIDEOCLASES";
+        return view ('videoclases');
     }
 }

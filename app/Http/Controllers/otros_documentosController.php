@@ -8,6 +8,6 @@ class otros_documentosController extends Controller
 {
     public function inicio()
     {
-        return "OTROS DOCUMENTOS";
+        return view ('otros-documentos');
     }
 }

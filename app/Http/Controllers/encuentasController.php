@@ -8,6 +8,6 @@ class encuentasController extends Controller
 {
     public function inicio()
     {
-        return "ENCUENTAS";
+        return view ('encuentas');
     }
 }
