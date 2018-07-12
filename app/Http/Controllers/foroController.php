@@ -8,6 +8,6 @@ class foroController extends Controller
 {
     public function inicio()
     {
-        return "FORO";
+        return view ('foro');
     }
 }

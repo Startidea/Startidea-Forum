@@ -8,6 +8,6 @@ class nota_legalController extends Controller
 {
     public function inicio()
     {
-        return "NOTA LEGAL";
+        return view ('nota-legal');
     }
 }

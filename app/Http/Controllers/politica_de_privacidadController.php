@@ -8,6 +8,6 @@ class politica_de_privacidadController extends Controller
 {
     public function inicio()
     {
-        return "POLITICA DE PRIVACIDAD";
+        return view ('politica-de-privacidad');
     }
 }
