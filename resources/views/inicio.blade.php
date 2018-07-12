@@ -11,12 +11,12 @@
 ----------------------------------------------------------------------------}}
 
 @php
-    
+    // De donde venia data_view?
     $data_view = array(
 
         'title' => 'Inicio',
 
-        'parrafo' => 'En construcción...',
+        'parrafo' => 'En construccion...',
 
     );
 

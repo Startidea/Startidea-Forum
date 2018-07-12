@@ -98,9 +98,10 @@
 ----------------------------------------------------------------------------}}
 
 <!doctype html>
-<html lang='{{ $data_app['language'] }}'>
+{{-- recoge el lenguaje del cliente --}}
+<html lang='{{ $data_app['language'] }}'> 
 
-    <head>
+<head>
 
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -165,6 +166,7 @@
                 <div class='links'>
 
                     <div class='login-register'>
+                        {{-- si usuario esta autenticado --}}
 
                         @if (!Auth::check())
 
@@ -183,6 +185,7 @@
                                 <div class='clear'></div>
                         
                                 <ul class='menu'>
+                                    {{-- rellenar lista con los valores del usuario?? --}}
 
                                     @foreach ($data_app['user-menu'] as $key => $value)
 
@@ -232,6 +235,7 @@
                                 @if (!Auth::check() AND !$value['session'])
                                 
                                     <a href='/{{ $value['route'] }}'>
+                                        {{-- request equivale a session_start de php --}}
                                         <li class='menu-login {{ Request::is($value['route']) ? 'select' : '' }}'>
                                             {{ $value['name'] }}
                                         </li>
