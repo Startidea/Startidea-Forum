@@ -1,5 +1,47 @@
+{{----------------------------------------------------------------------------
+    IMPOTAR PLANTILLA
+----------------------------------------------------------------------------}}
+
 @extends('layouts.app')
 
-@section('title')
-    STARTIDEA FORUM | Nota legal
+{{----------------------------------------------------------------------------
+    RECOGER DATOS 
+    (En el futuro el datos vendrán desde el controlador, de donde haremos 
+    las llamadas a la base de datos)
+----------------------------------------------------------------------------}}
+
+@php
+    
+    $data_view = array(
+
+        'title' => 'Nota-legal',
+
+        'parrafo' => 'En construcción...',
+
+    );
+
+@endphp
+
+{{----------------------------------------------------------------------------
+    HTML DEL CONTENT
+----------------------------------------------------------------------------}}
+
+@section('content')
+
+    <!-- CABECERA DEL CONTENIDO -->
+
+    <div id='header-content'>
+
+        <h1>{{ $data_view['title'] }}</h1>
+
+    </div>
+
+    <!-- BODY DEL CONTENIDO -->
+
+    <div id='body-content'>
+
+            <p>{{ $data_view['parrafo'] }}</p>
+
+    </div>
+
 @endsection
