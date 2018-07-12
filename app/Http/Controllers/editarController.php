@@ -8,6 +8,6 @@ class editarController extends Controller
 {
     public function inicio()
     {
-        return "EDITAR";
+        return view ('editar');
     }
 }

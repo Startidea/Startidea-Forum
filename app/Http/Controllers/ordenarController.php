@@ -8,6 +8,6 @@ class ordenarController extends Controller
 {
     public function inicio()
     {
-        return "ORDENAR";
+        return view ('ordenar');
     }
 }

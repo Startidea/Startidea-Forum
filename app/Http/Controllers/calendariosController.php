@@ -8,6 +8,6 @@ class calendariosController extends Controller
 {
     public function inicio()
     {
-        return "CALENDARIOS";
+        return view ('calendarios');
     }
 }
