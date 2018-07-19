@@ -82,6 +82,8 @@ ul {
         text-align: left;
      /* rgba establece rojo azul y negro y el ultimo es para la opacidad//(opacidad total 1.0) */
         border-bottom: 1px solid rgba(0,0,0,0.1);
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
     }
     .sidenav nav.menu ul li div.icon-menu {
         display: inline-block;
@@ -91,17 +93,27 @@ ul {
         padding: 10px;
         text-align: center;
         background-color: rgba(0,0,0,0.05);
-
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
     }
     .sidenav nav.menu ul li div.icon-menu span {
-        color: #fff;
+        color: rgba(255, 255, 255, 1);
         font-size: 25px;    /*Tamaño de la fuente(icono) del sidenav*/
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+    .sidenav nav.menu ul li:hover {
+      background-color: rgba(255, 255, 255, 1);
+      border-color: rgba(225,225,225,1);
+    }
+    .sidenav nav.menu ul li:hover div.icon-menu {
+      background-color: rgba(0,0,0,0.02);
     }
     .sidenav nav.menu ul li:hover div.icon-menu span {
-        color: #000;
+        color: #01B3E3;
     }
     .sidenav nav.menu ul li:hover div.text-menu {
-        color: #000;
+        color: #01B3E3;
     }
     .sidenav nav.menu ul li div.text-menu {
         display: inline-block;
@@ -110,7 +122,9 @@ ul {
         width: 70%;
         padding: 15px 10px 10px 10px;
         font-size: 1.5rem;
-        color: rgba(250,250,250,0.8);
+        color: rgba(250,250,250,1);
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
     }
 
     /* ----------------------------FOOTER------------------------------------------------------------------ */
