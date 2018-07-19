@@ -90,7 +90,7 @@ ul {
         height: 55px;
         padding: 10px;
         text-align: center;
-        background-color: rgba(0,0,0,0.1);
+        background-color: rgba(0,0,0,0.05);
 
     }
     .sidenav nav.menu ul li div.icon-menu span {
