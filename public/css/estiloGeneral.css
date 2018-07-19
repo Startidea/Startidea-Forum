@@ -1,0 +1,133 @@
+
+/*--------------------------------Importar fonts externas a traves de url ---------------------------------------------*/
+@import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome|iconicfill|iconicstroke|maki|openwebicons|typicons|zocial);
+
+/* entypo */
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+  }
+  /* iconicstroke */
+[class*="iconicstroke-"]:before {
+    font-family: 'IconicStroke', sans-serif;
+  }
+  
+  /* fontawesome */
+  [class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+  }
+  
+  /* iconicfill */
+  [class*="iconicfill-"]:before {
+    font-family: 'IconicFill', sans-serif;
+  }
+  
+  /* maki */
+  [class*="maki-"]:before {
+    font-family: 'maki', sans-serif;
+  }
+  
+  /* openwebicons */
+  [class*="openwebicons-"]:before {
+    font-family: 'OpenWeb Icons', sans-serif;
+  }
+  
+  /* typicons */
+  [class*="typicons-"]:before {
+    font-family: 'Typicons', sans-serif;
+  }
+  
+  /* zocial */
+  [class*="zocial-"]:before {
+    font-family: 'zocial', sans-serif;
+  }
+/*---------------------------------------------END FONT FAMILY IMPORT------------------------------------------------------------*/
+
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.clear {
+    clear:both;
+}
+
+
+/*Remove the navbar's default margin-bottom and rounded borders*/
+ /*Top menu de navegacion*/
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #0395ba;
+     
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /*------------------------------------SIDENAV ------------------------------------------------------------------ */
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding: 0;
+      background-color: #01B3E3;
+      min-height: 100%;
+    }
+    .sidenav2 {
+      padding: 0;
+    }
+    /* busca la clase sidenav dentro de nav.menu y dentro de los ul y li */
+    .sidenav nav.menu ul li {
+        display: block;
+        width: 100%;
+        text-align: left;
+     /* rgba establece rojo azul y negro y el ultimo es para la opacidad//(opacidad total 1.0) */
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+    .sidenav nav.menu ul li div.icon-menu {
+        display: inline-block;
+        float: left;
+        width: 30%;
+        height: 55px;
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.1);
+
+    }
+    .sidenav nav.menu ul li div.icon-menu span {
+        color: #fff;
+        font-size: 25px;    /*Tamaño de la fuente(icono) del sidenav*/
+    }
+    .sidenav nav.menu ul li:hover div.icon-menu span {
+        color: #000;
+    }
+    .sidenav nav.menu ul li:hover div.text-menu {
+        color: #000;
+    }
+    .sidenav nav.menu ul li div.text-menu {
+        display: inline-block;
+        float:left;
+        height: 55px;
+        width: 70%;
+        padding: 15px 10px 10px 10px;
+        font-size: 1.5rem;
+        color: rgba(250,250,250,0.8);
+    }
+
+    /* ----------------------------FOOTER------------------------------------------------------------------ */
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color:#00BDF1;
+      color: white;
+      padding: 15px;
+      
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
