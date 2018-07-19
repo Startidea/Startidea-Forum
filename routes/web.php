@@ -12,7 +12,8 @@
 */
 
 Route::get('/', 'inicioController@inicio');
-Route::get('/inicio', 'inicioController@inicio');
+//Route::get('/inicio', 'inicioController@inicio');
+Route::get('/home', 'homeController@inicio');
 Route::get('/alumnos', 'alumnosController@inicio');
 Route::get('asignaturas/', 'asignaturasController@inicio');
 Route::get('/calendarios', 'calendariosController@inicio');
