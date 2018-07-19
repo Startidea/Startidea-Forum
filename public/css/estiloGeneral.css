@@ -81,7 +81,7 @@ ul {
         width: 100%;
         text-align: left;
      /* rgba establece rojo azul y negro y el ultimo es para la opacidad//(opacidad total 1.0) */
-        border-bottom: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     .sidenav nav.menu ul li div.icon-menu {
         display: inline-block;
